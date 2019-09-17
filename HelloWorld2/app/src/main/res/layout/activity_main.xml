@@ -60,6 +60,7 @@
         app:layout_constraintVertical_bias="0.13" />
 
     <ImageView
+        android:id="@+id/catFood"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:src="@mipmap/drycatfood_round"

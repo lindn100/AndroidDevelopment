@@ -1,4 +1,4 @@
-package com.example.helloworld.util
+package com.example.KittyClicker.util
 
 import android.view.View
 
