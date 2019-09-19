@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name="com.example.KittyClicker.MainActivity">
+        </activity>
+
+        <activity android:name="com.example.KittyClicker.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

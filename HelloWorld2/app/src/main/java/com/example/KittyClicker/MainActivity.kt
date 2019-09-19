@@ -15,6 +15,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //intent.extras.get("username")
+
         if (savedInstanceState != null) {
             kittyCounter = savedInstanceState.getLong(kittyCounterKey, 0)
             TotalCount.text = kittyCounter.toString()
@@ -26,7 +28,7 @@ class MainActivity : AppCompatActivity() {
                 catFood.visibility = View.VISIBLE
             }
         }
-        //var vis:Boolean = false
+
         var catFoodCounter:Long = 0
         /*Timer().schedule(1000) {
             kittyCounter += (5 * catFoodCounter)
@@ -50,15 +52,6 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }
-
-           /* if(vis) {
-                cat.visibility = View.INVISIBLE
-                vis = false
-            } else {
-                cat.visibility = View.VISIBLE
-                vis = true
-            }*/
-
         }
     }
 
