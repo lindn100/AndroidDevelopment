@@ -28,7 +28,7 @@ class LoginActivity : AppCompatActivity() {
             }
         })
 
-        loginButton.setOnClickListener{startActivity(Intent(this, MainActivity::class.java).apply { putExtra("username", loginUsernameField.text)})}
+        loginButton.setOnClickListener{startActivity(Intent(this, MainActivity::class.java).apply { putExtra("username", loginUsernameField.text.toString())})}
     }
 
 

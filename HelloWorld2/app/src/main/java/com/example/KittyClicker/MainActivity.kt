@@ -15,15 +15,23 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //intent.extras.get("username")
+        var user = intent.extras?.getString("username", "default")
 
         if (savedInstanceState != null) {
-            kittyCounter = savedInstanceState.getLong(kittyCounterKey, 0)
+            kittyCounter = savedInstanceState.getLong(user, 0)
             TotalCount.text = kittyCounter.toString()
             if (kittyCounter < 10) {
                 Title.text = "Kitty Clicker"
+            } else {
+                Title.text = "YUMMY FOOD"
+                catFood.visibility = View.VISIBLE
             }
-            else {
+        } else {
+            kittyCounter = getStore().getLong(user, 0)
+            TotalCount.text = kittyCounter.toString()
+            if (kittyCounter < 10) {
+                Title.text = "Kitty Clicker"
+            } else {
                 Title.text = "YUMMY FOOD"
                 catFood.visibility = View.VISIBLE
             }
@@ -40,7 +48,6 @@ class MainActivity : AppCompatActivity() {
             //cat.rotate90()
             kittyCounter++
             TotalCount.text = kittyCounter.toString()
-
             if (kittyCounter >= 10) {
                 Title.text = "YUMMY FOOD"
                 catFood.visibility = View.VISIBLE
@@ -57,12 +64,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        getStore().edit().putLong(kittyCounterKey, kittyCounter).apply()
+        var user = intent.extras?.getString("username", "default")
+        getStore().edit().putLong(user, kittyCounter).apply()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         outState?.run{
-            putLong(kittyCounterKey, kittyCounter)
+            var user = intent.extras?.getString("username", "default")
+            putLong(user, kittyCounter)
+
 
         }
 
