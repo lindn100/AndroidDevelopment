@@ -46,6 +46,7 @@ class MainActivity : AppCompatActivity() {
         cat.setOnClickListener {
             //cat.toggleVisibility()
             //cat.rotate90()
+            meow.visibility = View.INVISIBLE
             kittyCounter++
             TotalCount.text = kittyCounter.toString()
             if (kittyCounter >= 10) {
@@ -53,6 +54,7 @@ class MainActivity : AppCompatActivity() {
                 catFood.visibility = View.VISIBLE
                 catFood.setOnClickListener {
                     if (kittyCounter >= 10) {
+                        meow.visibility = View.VISIBLE
                         kittyCounter -= 10
                         TotalCount.text = kittyCounter.toString()
                         catFoodCounter += 1
