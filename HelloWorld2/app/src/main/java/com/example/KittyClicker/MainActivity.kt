@@ -21,10 +21,31 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         mainViewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
-        mainViewModel.getUserCount(getUsername()).observe(this, androidx.lifecycle.Observer {updateCounter(it) })
+        mainViewModel.getUserCount(getUsername()).observe(this, androidx.lifecycle.Observer {
+            updateCounter(it)
+        })
 
         cat.setOnClickListener{
-            mainViewModel.setUserCount(getUsername(), kittyCounter + 1)
+            ++kittyCounter
+            mainViewModel.setUserCount(getUsername(), kittyCounter)
+            meow.visibility = View.INVISIBLE
+            if(kittyCounter < 10) {
+                Title.text = "Kitty Clicker"
+                catFood.visibility = View.INVISIBLE
+            } else {
+                Title.text = "YUMMY FOOD"
+                catFood.visibility = View.VISIBLE
+                catFood.setOnClickListener {
+                    meow.visibility = View.VISIBLE
+                    kittyCounter -= 10
+                    mainViewModel.setUserCount(getUsername(), kittyCounter)
+                    if(kittyCounter < 10) {
+                        Title.text = "Kitty Clicker"
+                        catFood.visibility = View.INVISIBLE
+                    }
+
+                }
+            }
         }
 
     }
