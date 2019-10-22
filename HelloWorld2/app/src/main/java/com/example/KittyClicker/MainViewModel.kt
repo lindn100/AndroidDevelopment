@@ -21,10 +21,10 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         MutableLiveData<Int>()
     }*/
 
-    private val repo = CountRepo(application.applicationContext)
+    private val repo = CountRepo(application.applicationContext) //getting the repo that holds these methods below - abstracting the layers out
 
-    fun getUserCount(name: String) = repo.getUserCount(name)
+    fun getUserCount(name: String) = repo.getUserCount(name) //this will return username passed in at login stored in livedata
 
-    fun setUserCount(name: String, count: Long) = repo.setUserCount(name, count)
+    fun setUserCount(name: String, count: Long) = repo.setUserCount(name, count) //this will set livedata count to what is passed in
 
 }

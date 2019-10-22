@@ -27,7 +27,7 @@ class LoginActivity : AppCompatActivity() {
                 //unused
             }
         })
-
+        //setting a listener to a button which will start an activity to create an intent to pass the username which resides in loginUsernameField
         loginButton.setOnClickListener{startActivity(Intent(this, MainActivity::class.java).apply { putExtra("username", loginUsernameField.text.toString())})}
     }
 
