@@ -1,9 +1,16 @@
 package com.example.KittyClicker
 
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.BroadcastReceiver
 import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.os.SystemClock
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModelProviders
@@ -23,10 +30,37 @@ class MainActivity : AppCompatActivity() {
     //username getting passed via intents from the Login Activity
     private fun getUsername() = intent.extras?.get("username").toString().toLowerCase(Locale.US)
 
+    lateinit var context: Context
+    lateinit var alarmManager: AlarmManager
+    private lateinit var alarmIntent: PendingIntent
+
+
     override fun onCreate(savedInstanceState: Bundle?) { //method that starts on app creation
         super.onCreate(savedInstanceState) //call the default on create method first
         setContentView(R.layout.activity_main) //set the view to our R.layout.activity_main
 
+        context = this
+        alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        alarmIntent = Intent(context, Receiver::class.java).let { intent ->
+            Title.text = "PET THIS CAT"
+            PendingIntent.getBroadcast(context, 0, intent, 0)
+        }
+
+// Set the alarm to start at 8:30 a.m.
+        val calendar: Calendar = Calendar.getInstance().apply {
+            timeInMillis = System.currentTimeMillis()
+            set(Calendar.HOUR_OF_DAY, 20)
+            set(Calendar.MINUTE, 15)
+        }
+
+// setRepeating() lets you specify a precise custom interval--in this case,
+// 2 minutes.
+        alarmManager?.setRepeating(
+            AlarmManager.RTC_WAKEUP,
+            calendar.timeInMillis,
+            1000 * 60 * 2,
+            alarmIntent
+        )
 
         /*MobileAds.initialize(this) {}
         mInterstitialAd = InterstitialAd(this)
@@ -75,6 +109,10 @@ class MainActivity : AppCompatActivity() {
     private fun updateCounter(count: Long) { //this is called when we update the live data model
         kittyCounter = count //setting the internal counter to the livedata
         TotalCount.text = kittyCounter.toString() //updating the number on the screen
+    }
+
+    public fun petCat() {
+        Title.text = "PET THE CAT"
     }
     /*private var kittyCounter: Long = 0
     fun getStore() = getPreferences(Context.MODE_PRIVATE)
