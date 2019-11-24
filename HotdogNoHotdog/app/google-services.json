@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "227167353859",
+    "firebase_url": "https://hotdognothotdog-cbcee.firebaseio.com",
+    "project_id": "hotdognothotdog-cbcee",
+    "storage_bucket": "hotdognothotdog-cbcee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:227167353859:android:6d6caa29cabd45dc8f2236",
+        "android_client_info": {
+          "package_name": "com.example.hotdognohotdog"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "227167353859-jts1q429pulne6la8k3op8rm8fj34v95.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANNP7sYMr87xGHJu6bGNZqzggzSoisedc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "227167353859-jts1q429pulne6la8k3op8rm8fj34v95.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
