@@ -13,6 +13,10 @@ import java.io.File
 import java.io.IOException
 import android.graphics.BitmapFactory
 import android.graphics.Bitmap
+import android.graphics.Color
+import android.view.View
+import android.widget.RelativeLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.videorecorder.MainActivity
 
 
@@ -32,13 +36,19 @@ class Processing : AppCompatActivity() {
 
         val labeler = FirebaseVision.getInstance().getOnDeviceImageLabeler()
 
+        val someView:View = findViewById(R.id.MYVIEW)
+        val rootView:View = someView.rootView
+
         labeler.processImage(image)
             .addOnSuccessListener { labels ->
                 var output = "NOT HOTDOG"
+                rootView.setBackgroundColor(Color.RED)
                 for (label in labels) {
                     val text = label.text
                     if (text == "Hot dog" || text == "hotdog" || text == "Hot Dog" || text == "hot dog" || text == "Hotdog"){
                         output = "HOTDOG"
+                        rootView.setBackgroundColor(Color.GREEN)
+                        break
                     }
                     val entityId = label.entityId
                     val confidence = label.confidence
